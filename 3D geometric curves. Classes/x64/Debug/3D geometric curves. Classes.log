@@ -1,0 +1,37 @@
+﻿  3D geometric curves. Classes.cpp
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(108,29): warning C4244: =: преобразование "double" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(121,30): warning C4244: =: преобразование "double" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(135,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(153,21): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(155,36): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(174,48): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+G:\VisualStudio\VC\Tools\MSVC\14.34.31933\include\xutility(231,77): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
+          with
+          [
+              _Ty=int
+          ]
+G:\VisualStudio\VC\Tools\MSVC\14.34.31933\include\memory(2023,1): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Construct_in_place<_Ty,int,int,int>(_Ty &,int &&,int &&,int &&) noexcept(false)"
+          with
+          [
+              _Ty=Circle
+          ]
+G:\VisualStudio\VC\Tools\MSVC\14.34.31933\include\memory(2703,36): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::_Ref_count_obj2<Circle>::_Ref_count_obj2<_Ty,_Ty,_Ty>(_Ty &&,_Ty &&,_Ty &&)"
+          with
+          [
+              _Ty=int
+          ]
+G:\VisualStudio\VC\Tools\MSVC\14.34.31933\include\memory(2704,20): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::_Ref_count_obj2<Circle>::_Ref_count_obj2<_Ty,_Ty,_Ty>(_Ty &&,_Ty &&,_Ty &&)"
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\3D geometric curves. Classes.cpp(145,108): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::shared_ptr<Circle> std::make_shared<Circle,int,int,int>(int &&,int &&,int &&)"
+  3D geometric curves. Classes.vcxproj -> C:\Users\soski\Desktop\о_0\C++\3D geometric curves. Classes\x64\Debug\3D geometric curves. Classes.exe
