@@ -1,5 +1,4 @@
 ﻿// 3D geometric curves. Classes.cpp 
-
 // Формулы:
 /* 
     Для круга - x = r * cos(t) + x0 , где (x0, y0) - координаты центра окружности
@@ -13,125 +12,90 @@
                          z = b * t
 */ 
 #define _USE_MATH_DEFINES  // Для константы pi
+#include "Header.h"
 #include <iostream>
-#include <vector>
 #include <cmath>
+#include <vector>
 #include <typeinfo>
 using namespace std;
 
-
-
-class Circle // Окружность
+void Point::print_Point()
 {
-protected: 
-    float radius, x0, y0;
-public:
-    virtual vector<float> get_3d_point(float t) // Высчитываем координаты точки по формуле, создаем вектор, возвращаем
-    {
-        vector<float> point(3);
-        point[0] = radius * cos(t) + x0;
-        point[1] = radius * sin(t) + y0;
-        point[2] = 0;
-        return point;
-    }
-    // Формулы для производных->
-    /* Производные: от x по t = -r * sin(t),
-                    от y по t = r * cos(t),
-                    от z по t = 0 по определению 
-    */
-    virtual vector<float> get_first_derivative(float t) 
-    {
-        vector<float> derivative(3);
-        derivative[0] = -radius * sin(t);
-        derivative[1] = radius * cos(t);
-        derivative[2] = 0;
-        return derivative;
-    }
-    virtual string identification() // Идентификационный метод, чтобы определить класс по объекту
-    {
-        return "Circle";
-    }
-    Circle(float radius, float x0, float y0) : radius(radius), x0(x0), y0(y0) {} // Список инициализации конструктора
-    virtual float get_radius()
-    {
-        return radius;
-    }
-};
+    cout << "{ " << x << ", " << y << ", " << z << " }";
+}
 
-class Ellipse : public Circle // Эллипс наследуется от окружности
+Point Base_curve::get_3d_point(float t)
 {
-private:
-    float second_radius; // Второй радиус
-public:
-    Ellipse(float radius, float second_radius, float x0, float y0) 
-        : Circle(radius, x0, y0), second_radius(second_radius) {} // Конструктор
-    
-    vector<float> get_3d_point(float t) // Высчитываем координаты точки по формуле, создаем вектор, возвращаем
-    {
-        vector<float> point(3);
-        point[0] = radius * cos(t) + x0;
-        point[1] = second_radius * sin(t) + y0;
-        point[2] = 0;
-        return point;
-    }
-    // Формулы для производных->
-    /* Производные: от x по t = -radius * sin(t),
-                    от y по t = second_radius * cos(t),
-                    от z по t = 0 по определению
-    */
-    vector<float> get_first_derivative(float t)
-    {
-        vector<float> derivative(3);
-        derivative[0] = -radius * sin(t);
-        derivative[1] = second_radius * cos(t);
-        derivative[2] = 0;
-        return derivative;
-    }
-    string identification()
-    {
-        return "Ellipse";
-    }
-};
-
-class Helix : public Circle // Спираль(винтовая линия) наследуется от окружности
+    Point point;
+    point.x = 0; point.y = 0; point.z = 0;
+    return point;
+}
+Point Base_curve::get_first_derivative(float t)
 {
-private:
-    float step;
-public:
-    Helix(float radius, float step, float x0, float y0) : Circle(radius, x0, y0), step(step) {} // Конструктор
+    Point point;
+    point.x = 0; point.y = 0; point.z = 0;
+    return point;
+}
 
-    vector<float> get_3d_point(float t) // Высчитываем координаты точки по формуле, создаем вектор, возвращаем
-    {
-        vector<float> point(3);
-        point[0] = radius * cos(t) + x0;
-        point[1] = radius * sin(t) + y0;
-        point[2] = step * t / (2 * M_PI); // Так как step = 2 * b * pi, => b = step / (2 * pi)
-        return point;
-    }
-    // Формулы для производных->
-    /* Производные: от x по t = -r * sin(t), 
-                    от y по t = r * cos(t),
-                    от z по t = b 
-    */
-    vector<float> get_first_derivative(float t)
-    {
-        vector<float> derivative(3);
-        derivative[0] = -radius * sin(t);
-        derivative[1] = radius * cos(t);
-        derivative[2] = step / (2 * M_PI);
-        return derivative;
-    }
-    string identification()
-    {
-        return "Helix";
-    }
-};
+Circle::Circle(float radius, float x0, float y0) : radius(radius), x0(x0), y0(y0) {} // Конструктор круга
+Point Circle::get_3d_point(float t) // Высчитываем координаты точки по формуле, создаем вектор, возвращаем
+{
+    Point point;
+    point.x = radius * cos(t) + x0;
+    point.y = radius * sin(t) + y0;
+    point.z = 0;
+    return point;
+}
+Point Circle::get_first_derivative(float t) // Производная для круга
+{
+    Point derivative;
+    derivative.x = -radius * sin(t);
+    derivative.y = radius * cos(t);
+    derivative.z = 0;
+    return derivative;
+}
+
+Ellipse::Ellipse(float radius, float second_radius, float x0, float y0) : radius(radius), second_radius(second_radius), x0(x0), y0(y0) {} // Конструктор круга
+Point Ellipse::get_3d_point(float t) // Высчитываем координаты точки по формуле, создаем вектор, возвращаем
+{
+    Point point;
+    point.x = radius * cos(t) + x0;
+    point.y = second_radius * sin(t) + y0;
+    point.z = 0;
+    return point;
+}
+Point Ellipse::get_first_derivative(float t) // Производная для круга
+{
+    Point derivative;
+    derivative.x = -radius * sin(t);
+    derivative.y = second_radius * cos(t);
+    derivative.z = 0;
+    return derivative;
+}
+
+Helix::Helix(float radius, float step, float x0, float y0) : radius(radius), step(step), x0(x0), y0(y0) {} // Конструктор круга
+Point Helix::get_3d_point(float t) // Высчитываем координаты точки по формуле, создаем вектор, возвращаем
+{
+    Point point;
+    point.x = radius * cos(t) + x0;
+    point.y = radius * sin(t) + y0;
+    point.z = step * t / (2 * M_PI);
+    return point;
+}
+Point Helix::get_first_derivative(float t) // Производная для круга
+{
+    Point derivative;
+    derivative.x = -radius * sin(t);
+    derivative.y = radius * cos(t);
+    derivative.z = step / (2 * M_PI);
+    return derivative;
+}
 
 
 int main()
 {
     setlocale(LC_ALL, "ru");
-    vector<shared_ptr<Circle>> curves;
+    vector<shared_ptr<Base_curve>> curves;
     srand(time(NULL));
     cout.precision(1); // Установка вывода с одним знаком после запятой
     cout.setf(ios::fixed);
@@ -155,20 +119,22 @@ int main()
     int curves_size = curves.size();
     for (int i = 0; i < curves_size; ++i)
     {
-        vector<float> point = curves[i]->get_3d_point(t);
-        vector<float> derivative = curves[i]->get_first_derivative(t);
-        cout << "{" << point[0] << "  " << point[1] << "  " << point[2] << "}  {" 
-               << derivative[0] << "  " << derivative[1] << "  " << derivative[2] << "}\n";
+        Point point = curves[i] -> get_3d_point(t);
+        Point derivative = curves[i]->get_first_derivative(t);
+        point.print_Point();
+        cout << "  ";
+        derivative.print_Point();
+        cout << "\n";
     }
     
-    vector<shared_ptr<Circle>> only_circles; // Массив для кружков
+    vector<shared_ptr<Base_curve>> only_circles; // Массив для кружков
     for (int i = 0; i < curves_size; ++i) // Заполнение второго вектора только кружочками
-    {
-        if (curves[i]->identification() == "Circle") // Если в массиве наткнулись на круг
+
+        if (dynamic_pointer_cast<Circle>(curves[i]) != nullptr) // Если в массиве наткнулись на круг
         {
             only_circles.push_back(curves[i]); // Добавляем в другой массив указатель на тот же элемент
         }
-    }
+    
 
     // Сортировка массива кружков реализована методом пузырька
     int only_circles_size = only_circles.size();
